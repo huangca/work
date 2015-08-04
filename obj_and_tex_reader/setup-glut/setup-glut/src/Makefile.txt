@@ -1,0 +1,32 @@
+GCC_OPTIONS=-Wall -g -std=c++11 -pedantic -I../include
+GL_OPTIONS=-lglut -lGLEW -lGL -lsfml-graphics -lsfml-system -lsfml-window #-lsfml-opengl
+COPTIONS=$(GCC_OPTIONS) $(GL_OPTIONS)
+SRC=puree
+
+all: puree
+
+puree: initShader.o object.o uniforms.o $(SRC).o stb_image.o
+	g++ $(GL_OPTIONS) -g -o puree initShader.o object.o uniforms.o $(SRC).o stb_image.o
+
+object.o: object.cpp uniforms.o stb_image.o
+	g++ $(GCC_OPTIONS) -c object.cpp
+
+uniforms.o: uniforms.cpp
+	g++ $(GCC_OPTIONS) -c uniforms.cpp
+
+initShader.o: initShader.cpp
+	g++ $(GCC_OPTIONS) -c initShader.cpp
+
+$(SRC).o: $(SRC).cpp
+	g++ $(GCC_OPTIONS) -c $(SRC).cpp
+
+stb_image.o: stb_image.c
+	g++ $(GCC_OPTIONS) -c stb_image.c
+
+clean:
+	rm initShader.o
+	rm object.o
+	rm uniforms.o
+	rm $(SRC).o
+	rm stb_image.o
+	rm puree
