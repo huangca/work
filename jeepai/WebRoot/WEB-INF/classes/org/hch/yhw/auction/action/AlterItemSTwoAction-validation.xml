@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE validators PUBLIC 
+	"-//OpenSymphony Group//XWork Validator 1.0.3//EN"
+	"http://www.opensymphony.com/xwork/xwork-validator-1.0.3.dtd">
+
+<validators>
+	<field name="name">
+		<field-validator type="requiredstring">
+			<message>商品名必填！</message>
+		</field-validator>
+
+	</field>
+	
+		<field name="desc">
+		<field-validator type="requiredstring">
+			<message>商品描述必填！</message>
+		</field-validator>
+
+	</field>
+	
+			<field name="remark">
+		<field-validator type="requiredstring">
+			<message>商品备注必填！</message>
+		</field-validator>
+
+	</field>
+
+</validators>

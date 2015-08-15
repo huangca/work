@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE validators PUBLIC 
+	"-//OpenSymphony Group//XWork Validator 1.0.3//EN"
+	"http://www.opensymphony.com/xwork/xwork-validator-1.0.3.dtd">
+
+<validators>
+	<field name="kindName">
+		<field-validator type="requiredstring">
+			<message>种类名必填！</message>
+		</field-validator>
+
+	</field>
+	
+		<field name="kindDesc">
+		<field-validator type="requiredstring">
+			<message>种类描述必填！</message>
+		</field-validator>
+
+	</field>
+
+</validators>

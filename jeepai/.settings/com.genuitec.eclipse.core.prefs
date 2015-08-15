@@ -1,0 +1,4 @@
+#Fri Apr 02 14:16:18 CST 2010
+eclipse.preferences.version=1
+validator.Checked=src/org/hch/yhw/auction/action/AlterItemSTwoAction-validation.xml,src/org/hch/yhw/auction/action
+validator.Unchecked=

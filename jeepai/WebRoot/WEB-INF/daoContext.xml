@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="GBK"?>
+<!-- 指定Spring配置文件的DTD信息 -->
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+	"http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+	<!-- 配置daoTemplate，作为所有DAO组件的模板 -->
+	<bean id="daoTemplate" abstract="true">
+		<!-- 为DAO组件注入SessionFactory引用 -->
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<!-- 配置stateDao组件 -->
+	<bean id="stateDao" parent="daoTemplate"
+		class="org.hch.yhw.auction.dao.impl.StateDaoHibernate"/>
+	<!-- 配置kindDao组件 -->
+	<bean id="kindDao" parent="daoTemplate"
+		class="org.hch.yhw.auction.dao.impl.KindDaoHibernate"/>
+	<!-- 配置auctionDao组件 -->
+	<bean id="auctionUserDao" parent="daoTemplate"
+		class="org.hch.yhw.auction.dao.impl.AuctionUserDaoHibernate"/>
+	<!-- 配置bidDao组件 -->
+	<bean id="bidDao" parent="daoTemplate"
+		class="org.hch.yhw.auction.dao.impl.BidDaoHibernate"/>
+	<!-- 配置itemDao组件 -->
+	<bean id="itemDao" parent="daoTemplate"
+		class="org.hch.yhw.auction.dao.impl.ItemDaoHibernate"/>
+	<!-- 配置yiItemDao组件 -->
+	<bean id="yiItemDao" parent="daoTemplate"
+		class="org.hch.yhw.auction.dao.impl.YiItemDaoHibernate"/>	
+		<!-- 配置adminDao组件 -->
+	<bean id="adminDao" parent="daoTemplate"
+		class="org.hch.yhw.auction.dao.impl.AdminDaoHibernate"/>	
+			<!-- 配置orderyiDao组件 -->
+	  <bean id="orderyiDao" parent="daoTemplate"
+		class="org.hch.yhw.auction.dao.impl.OrderyiDaoHibernate"/>	
+		<!-- 配置orderdetailDao组件 -->
+		  <bean id="orderdetailDao" parent="daoTemplate"
+		class="org.hch.yhw.auction.dao.impl.OrderdetailDaoHibernate"/>	
+		<!-- 配置大类别bigKindDao组件 -->
+		  <bean id="bigKindDao" parent="daoTemplate"
+		class="org.hch.yhw.auction.dao.impl.BigKindDaoHibernate"/>
+		  <bean id="orderiDao" parent="daoTemplate"
+		class="org.hch.yhw.auction.dao.impl.OrderiDaoHibernate"/>		
+ 
+</beans>

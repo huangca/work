@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<constant name="struts.custom.i18n.resources"
+		value="messageResource"/>
+	<constant name="struts.i18n.encoding" value="GBK"/>
+
+	<package name="default" extends="struts-default">
+
+		<!-- 配置系统的拦截器 -->
+		<interceptors>
+			<!-- 定义系统的登录控制的拦截器 -->
+			<interceptor name="authority" 
+				class="org.hch.yhw.auction.action.interceptor.AuthorityInterceptor"/>
+			<!-- 定义系统auctionStack拦截器栈 -->
+			<interceptor-stack name="auctionStack">
+				<!-- 引用系统的默认拦截器栈 -->
+				<interceptor-ref name="defaultStack"/>
+				<!-- 引用登录控制拦截器 -->
+				<interceptor-ref name="authority"/>
+			</interceptor-stack>
+		</interceptors>
+		<!-- 将自定义的拦截器栈定义成默认拦截器栈 -->
+	<!-- 	<default-interceptor-ref name="auctionStack"/>
+ -->
+		
+			<!-- 下面定义的结果对所有的Action都有效 -->
+	  		<global-results>
+			<result name="login">/WEB-INF/jsp/login.jsp</result>
+			<result name="exception">/WEB-INF/jsp/error.jsp</result>
+		 </global-results>
+
+		<global-exception-mappings>
+			<!-- 指Action抛出AuctionException异常时，转入名为exception的结果。 -->
+			<exception-mapping exception="org.hch.yhw.auction.exception.AuctionException" result="exception"/>
+			<!-- 指Action抛出Exception异常时，转入名为exception的结果。 -->
+			<exception-mapping exception="java.lang.Exception" result="exception"/>
+		</global-exception-mappings>
+
+<!--新增 2 20100410对赢取物品的操作开始-->
+<action name="adminviewOrderiDetailBack" class="org.hch.yhw.auction.action.MgrBidOrderAction" method="viewOrderioneDetail">
+<result name="success">/WEB-INF/admin/viewMemberBid.jsp</result>	
+</action>
+<action name="admincancelOrderi" class="org.hch.yhw.auction.action.MgrBidOrderAction" method="cancelOrderi">
+<result name="success">/WEB-INF/admin/mgrOrderi.jsp</result>	
+</action>
+<action name="adminSendOrderi" class="org.hch.yhw.auction.action.MgrBidOrderAction" method="jingpaiSend">
+<result name="success">/WEB-INF/admin/mgrOrderi.jsp</result>	
+</action>
+<action name="adminmgrOrderi" class="org.hch.yhw.auction.action.MgrBidOrderAction" method="viewOrderis">
+<result name="success">/WEB-INF/admin/mgrOrderi.jsp</result>	
+</action>
+<action name="confimOrderi" class="org.hch.yhw.auction.action.MgrBidOrderAction" method="jingpaiConfirm">
+<result name="success">/WEB-INF/user/viewSuccess.jsp</result>	
+</action>
+<action name="userpayoffOrderi" class="org.hch.yhw.auction.action.MgrBidOrderAction" method="jingPaiPay">
+<result name="success">/WEB-INF/user/viewSuccess.jsp</result>	
+</action>
+<action name="usercancelOrderi" class="org.hch.yhw.auction.action.MgrBidOrderAction" method="cancelOrderi">
+<result name="success">/WEB-INF/user/viewSuccess.jsp</result>	
+</action>
+<action name="userviewItemSu" class="org.hch.yhw.auction.action.MgrBidOrderAction" method="viewSelfOrderi">
+<result name="success">/WEB-INF/user/viewSuccess.jsp</result>	
+</action>
+
+<action name="userviewOrderidetail" class="org.hch.yhw.auction.action.MgrBidOrderAction" method="viewOrderioneDetail">
+<result name="success">/WEB-INF/user/viewMemberBidDetail.jsp</result>	
+</action>
+<!-- 查看详情没有做 -->
+<!--新增 2 20100410对赢取物品的操作结束-->
+<!--新增 -->
+<action name="usergotofindpsw"><!-- 前往找回密码的页面 -->
+<result name="success">/WEB-INF/user/findpsw.jsp</result>
+</action>
+<action name="userfindpsw" class="org.hch.yhw.auction.action.FindPasswordAction" method="findpsw">
+<result name="input">/WEB-INF/user/findpsw.jsp</result>
+<result name="success">/WEB-INF/user/indexsuccess.jsp</result>
+</action>
+<action name="adminupdateorderyiaction" class="org.hch.yhw.auction.action.UpdateorderyiAction" method="updateO">
+		<result name="success">/WEB-INF/admin/operationsuccess.jsp</result>	
+			
+		</action> 
+
+<action name="admindeleteordera" class="org.hch.yhw.auction.action.UpdateorderyiAction" method="deleteO">
+		<result name="success">/WEB-INF/admin/operationsuccess.jsp</result>	
+			
+		</action> 
+<action name="ChecknickName" class="org.hch.yhw.auction.action.ChecknickNameAction">
+			
+			
+		</action> 
+<action name="doAdminAction">
+			<result name="success">/WEB-INF/admin/adminLogin.jsp</result>
+			
+		</action> 
+		<action name="adminproAddBigKind" class="org.hch.yhw.auction.action.AddBigKindAction">
+			<result name="success">/WEB-INF/admin/operationsuccess.jsp</result>
+			<result name="input">/WEB-INF/admin/addBigKind.jsp</result>
+		</action>
+<!-- 添加大类的action导航页面-->
+<action name="adminaddBigKind">
+			<result name="success">/WEB-INF/admin/addBigKind.jsp</result>
+			
+		</action> 
+
+		<!--  
+		<action name="testAction" class="org.hch.yhw.auction.action.TestAction">
+			<result name="success">/WEB-INF/admin/testjsp.jsp</result>
+			
+		</action>-->
+<!-- 测试double select fin -->
+		<action name="userregedit">
+			<result name="success">/WEB-INF/user/regedit.jsp</result>
+		
+		</action>
+		<!--新增  -->
+		<action name="userregeditPage" class="org.hch.yhw.auction.action.RegeditAction">
+			<result name="success" type="chain">userinitAction</result>	
+			<result name="input">/WEB-INF/user/regedit.jsp</result>
+				</action>
+			<!--新增  -->
+			<action name="usermemberSeftAction">
+			<result name="success">/WEB-INF/user/memberCenter.jsp</result>
+			<interceptor-ref name="auctionStack"/>
+           </action>
+           
+           <!--新增  -->
+          <action name="userchangePwPage">
+           <result name="success">/WEB-INF/user/changePw.jsp</result>
+		</action>
+		
+		<!--新增  -->
+		<action name="userchangePw" class="org.hch.yhw.auction.action.ChangePwAction">
+			<result name="success" type="chain">userindex</result>	
+				<result name="input">/WEB-INF/user/changePw.jsp</result>
+		</action>
+		
+			<!--新增  -->
+		<action name="userviewOrder" class="org.hch.yhw.auction.action.ViewOrderAction">
+				
+				<result name="success">/WEB-INF/user/viewOrder.jsp</result>
+			<!--<result name="error" >/WEB-INF/jsp/main.jsp</result>	-->
+		</action>
+		
+		<!--新增  -->
+		<action name="cancelOrder" class="org.hch.yhw.auction.action.CancelOrderAction">
+				
+				<result name="success" type="chain">userviewOrder</result>
+				
+		</action>
+		<!--新增  -->
+		<action name="viewOrderDetail" class="org.hch.yhw.auction.action.ViewOrderDetailAction">
+				
+				<result name="success">/WEB-INF/user/viewOrderDetail.jsp</result>
+			</action>
+		
+		<!--新增  -->
+		<action name="userchangeDatePage" class="org.hch.yhw.auction.action.ChangeDateAction">
+			<result name="success" >/WEB-INF/user/changeDate.jsp</result>	
+				
+		</action>
+		<!--新增  -->	
+		
+			<action name="userchangeDate" class="org.hch.yhw.auction.action.ChangeDateSTwoAction">
+			<result name="success" >/WEB-INF/user/main.jsp</result>	
+				<result name="input">/WEB-INF/user/changeDate.jsp</result>
+		</action>
+		<action name="adminQuitAction" class="org.hch.yhw.auction.action.AdminQuitAction">
+		<result name="success">/WEB-INF/admin/adminLogin.jsp</result>
+		</action>
+		<!--后台部分  -->
+		<!--新增  
+		<action name="adminLoginPage">
+			<result name="success">/WEB-INF/admin/adminLogin.jsp</result>
+		</action>-->	
+		<!--新增  -->	
+		<action name="adminLogin" class="org.hch.yhw.auction.action.AdminLoginAction">
+			<result name="success" >/WEB-INF/admin/adminmain.jsp</result>	
+				<result name="input">/WEB-INF/admin/adminLogin.jsp</result> 
+		
+		</action>
+		
+		<!--新增  -->	
+		<action name="adminmgrOrder" class="org.hch.yhw.auction.action.AdminOrderAction">
+			<result name="success">/WEB-INF/admin/mgrOrder.jsp</result>
+		</action>
+		
+		<!--新增  发货-->	
+		<action name="adminSendOrder" class="org.hch.yhw.auction.action.AdminSendOrderAction">
+			<result name="success" type="chain">adminmgrOrder</result>
+		</action>
+			<!--新增  确认订单-->	
+				<action name="adminconfimOrder" class="org.hch.yhw.auction.action.AdminSendOrderAction" method="confimOrderyi">
+			<result name="success" type="chain">adminmgrOrder</result>
+		</action>
+		
+		
+		<!--新增  admin删除订单-->	
+				<action name="admincancelOrder" class="org.hch.yhw.auction.action.AdminSendOrderAction" method="cancelOrderyi">
+			<result name="success" type="chain">adminmgrOrder</result>
+		</action>
+		<!--新增 付款-->	
+		<action name="payoffOrder" class="org.hch.yhw.auction.action.AdminSendOrderAction" method="payoffOrderyi">
+			<result name="success" type="chain">userviewOrder</result>
+		</action>
+		
+		<action name="adminviewOrderDetailBack" class="org.hch.yhw.auction.action.ViewOrderDetailAction">
+			<result name="success">/WEB-INF/admin/viewMemberOrderDetail.jsp</result>
+			</action>
+		
+
+			<!--加大类后新增 --> 
+		<action name="adminalterBigKindDetail" class="org.hch.yhw.auction.action.AlterBigKindDetailAction">
+			<result name="success" >/WEB-INF/admin/alterBigKindDetail.jsp</result>
+		</action>
+		
+				<!--加大类后新增 -->
+		<action name="adminalterBigKindSTwo" class="org.hch.yhw.auction.action.AlterBigKindSTwoAction">
+			<result name="success" type="chain">adminalterKind</result>
+		</action> 
+			
+			<!--新增  -->	
+		<action name="adminalterKind" class="org.hch.yhw.auction.action.MgrKindAction">
+			<result name="success" >/WEB-INF/admin/alterKind.jsp</result>
+		</action>
+		
+		<!--新增  -->	
+		<action name="adminalterKindDetail" class="org.hch.yhw.auction.action.AlterKindDetailAction">
+			<result name="success" >/WEB-INF/admin/alterKindDetail.jsp</result>
+		</action>
+		
+		<!--新增  -->	
+		<action name="adminalterKindSTwo" class="org.hch.yhw.auction.action.AlterKindSTwoAction">
+			<result name="success" type="chain">adminalterKind</result>
+		</action>
+		
+		<!--新增  
+		<action name="mgrItemPage" >
+			<result name="success" >/WEB-INF/admin/mgrItemPage.jsp</result>
+		</action>-->	
+		
+
+		<!--新增  分页，后台暂用  -->	
+		<action name="adminalterItem" class="org.hch.yhw.auction.action.viewJingJiaAction" method="execute2" >
+			<result name="success" >/WEB-INF/admin/alterItem.jsp</result>
+		</action>
+		<!--新增  -->	
+		<action name="adminalterItemDetail" class="org.hch.yhw.auction.action.AlterItemDetailAction">
+			<result name="success" >/WEB-INF/admin/alterItemDetail.jsp</result>
+		</action>
+		
+			<!--新增  -->	
+		<action name="adminalterItemSTwo" class="org.hch.yhw.auction.action.AlterItemSTwoAction">
+			<interceptor-ref name="fileUpload">
+<param name="allowedTypes">image/png,image/gif,image/pjpeg</param>
+<param name="maximumSize">30720000</param>
+</interceptor-ref>
+<interceptor-ref name="defaultStack"/>
+<param name="savePath">/images</param>
+			<result name="success" type="chain">adminalterItem</result>
+			<result name="error" >/WEB-INF/jsp/main.jsp</result>
+		</action>
+		
+					<!--新增 
+		<action name="mgrYiItemPage" >
+			<result name="success" >/WEB-INF/admin/mgrYiItemPage.jsp</result>
+		</action>		 -->	
+					
+	
+					<!--新增 后台分页  -->	
+		<action name="adminalterYiItem" class="org.hch.yhw.auction.action.ViewFailYiItemAction" method="execute2">
+			<result name="success" >/WEB-INF/admin/alterYiItem.jsp</result>
+			
+		</action>
+		<!--新增  -->	
+		<action name="adminalterYiItemDetail" class="org.hch.yhw.auction.action.AlterYiItemDetailAction">
+			<result name="success" >/WEB-INF/admin/alterYiItemDetail.jsp</result>
+		</action>
+		
+		
+			<!--新增  -->	
+		<action name="adminalterYiItemSTwo" class="org.hch.yhw.auction.action.AlterYiItemSTwoAction">
+			<interceptor-ref name="fileUpload">
+<param name="allowedTypes">image/png,image/gif,image/pjpeg</param>
+<param name="maximumSize">30720000</param>
+</interceptor-ref>
+<interceptor-ref name="defaultStack"/>
+<param name="savePath">/images</param>
+			<result name="success" type="chain">adminalterYiItem</result>
+			<result name="error" >/WEB-INF/jsp/main.jsp</result>
+		</action>
+		
+		
+		<!-- 浏览详细一口价和竞拍商品的action -->
+
+  
+  		<action name="userviewYiitemDetailPai" class="org.hch.yhw.auction.action.ViewYiitemDetailPai">
+			<result name="success">/WEB-INF/jsp/viewYiitemDe.jsp</result>
+		</action>
+  
+    		<action name="userviewJingPaiPai" class="org.hch.yhw.auction.action.ViewJingPaiPai">
+			<result name="success">/WEB-INF/jsp/viewItemDe.jsp</result>
+		</action>
+  
+  
+  
+		<action name="userindex">
+			<result name="success" type="chain">userinitAction</result>
+		</action>
+		<action name="userinitAction" class="org.hch.yhw.auction.action.InitAction">
+			<result name="success">/WEB-INF/user/main.jsp</result>
+		</action>
+
+
+		<action name="viewFailItem" class="org.hch.yhw.auction.action.ViewFailAction">
+			<result name="success">/WEB-INF/jsp/viewFail.jsp</result>	
+		</action>
+		<action name="userviewFullYiItem" class="org.hch.yhw.auction.action.ViewFailYiItemAction">
+			<result name="success">/WEB-INF/jsp/viewYiItem.jsp</result>	
+		</action>
+		<action name="userviewBid" class="org.hch.yhw.auction.action.ViewBidAction">
+			<result name="success">/WEB-INF/user/viewBid.jsp</result>	
+		</action>
+
+		<action name="adminmgrItem" class="org.hch.yhw.auction.action.MgrItemAction">
+			<result name="success">/WEB-INF/jsp/mgrItem.jsp</result>
+		</action>
+		<action name="adminmgrYiItem" class="org.hch.yhw.auction.action.MgryiItemAction" >
+			<result name="success">/WEB-INF/jsp/mgrYiItem.jsp</result>
+		</action>
+		<action name="adminmgrKind" class="org.hch.yhw.auction.action.MgrKindAction">
+			<result name="success">/WEB-INF/jsp/mgrKind.jsp</result>	
+		</action>
+
+		<action name="viewKind" class="org.hch.yhw.auction.action.ViewKindAction">
+			<result name="success">/WEB-INF/jsp/viewKind.jsp</result>	
+		</action>
+		<action name="userviewJingpaiItem" class="org.hch.yhw.auction.action.viewJingJiaAction">
+			<result name="success">/WEB-INF/jsp/viewFail.jsp</result>	
+		</action>
+     	<action name="userviewItem" class="org.hch.yhw.auction.action.ViewItemAction">
+	      <result name="input">viewKind</result>
+	      <result name="success">/WEB-INF/jsp/viewItem.jsp</result>  
+		 </action>
+		<action name="userviewDetail" class="org.hch.yhw.auction.action.ViewDetailAction">
+			<result name="error">/WEB-INF/jsp/error.jsp</result>
+			<result name="success">/WEB-INF/jsp/viewDetail.jsp</result>
+			<interceptor-ref name="auctionStack"/>
+		</action>
+    <action name="userQuit" class="org.hch.yhw.auction.action.LogoutAction">
+	<result name="success">/index.jsp</result>
+	</action>
+	
+	    <action name="userviewCartAction" class="org.hch.yhw.auction.action.ViewCartAction">
+	<result name="none">/WEB-INF/jsp/cartList.jsp</result>
+	<result name="success">/WEB-INF/jsp/cartAdd.jsp</result>
+	<interceptor-ref name="auctionStack"/>
+	</action>
+	
+	 <action name="useraddCartAction" class="org.hch.yhw.auction.action.AddCartAction">
+	<result name="success" >/WEB-INF/jsp/cartAdd.jsp</result>
+	<interceptor-ref name="auctionStack"/>
+	</action>
+	<action name="userclearCartAction" class="org.hch.yhw.auction.action.ClearCartAction">
+	<result name="success" >/WEB-INF/jsp/cartAdd.jsp</result>
+	</action>
+	
+	<action name="userdeleteCartAction" class="org.hch.yhw.auction.action.DeleteCartAction">
+	<result name="success" type="chain">useraddCartAction</result>
+	</action>
+	
+	<!-- 配置OrderAction -->
+	<action name="usercreateOrderAction" class="org.hch.yhw.auction.action.CreateOrderAction">
+	<result name="success" >/WEB-INF/jsp/createOrder.jsp</result>
+	</action>
+		<action name="usersubmitOrderAction" class="org.hch.yhw.auction.action.SubmitOrderAction">
+	<result name="success" >/WEB-INF/jsp/orderSuccess.jsp</result>
+	</action>
+	
+	
+	
+		<!-- 配置处理用户登录的Action -->
+		<action name="userprocessLogin" class="org.hch.yhw.auction.action.LoginAction">
+			<!-- 配置处理用户登录后的Result -->
+			<result name="input">/index.jsp</result> 
+			<result name="success" type="chain">userinitAction</result>
+			<result name="failure">/index.jsp</result>
+			<!-- 显式引用系统默认拦截器栈 -->
+			<interceptor-ref name="defaultStack"/>
+		</action>
+
+
+		<action name="adminproAddItem" class="org.hch.yhw.auction.action.AddItemAction">
+			
+			<interceptor-ref name="fileUpload">
+<param name="allowedTypes">image/png,image/gif,image/pjpeg</param>
+<param name="maximumSize">30720000</param>
+</interceptor-ref>
+<interceptor-ref name="defaultStack"/>
+<param name="savePath">/images</param>
+			<!-- 保存图片的参数设置 -->
+			<result name="input" type="chain">adminmgrItem</result>	
+			<result name="success" type="chain">adminmgrItem</result>
+		</action>
+		<action name="adminproAddKind" class="org.hch.yhw.auction.action.AddKindAction">
+			<result name="input" type="chain">adminmgrKind</result>	
+			<result name="success" type="chain">adminmgrKind</result>
+		</action>
+		<action name="userbid" class="org.hch.yhw.auction.action.AddBidAction">
+			<result name="input" type="chain">userviewDetail</result>	
+			<result name="success" type="chain">userviewBid</result>
+		</action>
+<!-- 配置一口价商品的处理 -->
+		<action name="adminproAddYiItem" class="org.hch.yhw.auction.action.AddYiItemAction">
+			
+			<interceptor-ref name="fileUpload">
+<param name="allowedTypes">image/png,image/gif,image/pjpeg</param>
+<param name="maximumSize">30720000</param>
+</interceptor-ref>
+<interceptor-ref name="defaultStack"/>
+<param name="savePath">/images</param>
+			<!-- 保存图片的参数设置 -->
+			<result name="input" type="chain">adminmgrYiItem</result>	
+			<result name="success" type="chain">adminmgrYiItem</result>
+		</action>
+		
+		<action name="buyYiItem" class="org.hch.yhw.auction.action.BuyYiItemAction">
+		<result name="success" type="chain">userviewFullYiItem</result>
+		<result name="input" type="chain">userviewFullYiItem</result>
+		</action>
+	</package> 
+
+
+</struts>

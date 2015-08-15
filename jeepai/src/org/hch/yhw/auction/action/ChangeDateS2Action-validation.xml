@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE validators PUBLIC 
+	"-//OpenSymphony Group//XWork Validator 1.0.3//EN"
+	"http://www.opensymphony.com/xwork/xwork-validator-1.0.3.dtd">
+	<validators>
+<field name="realName">
+			<field-validator type="requiredstring">
+			<message>真实姓名必须填</message>
+		</field-validator>
+	</field>
+		
+	
+	
+			<field name="telphone">
+			<field-validator type="requiredstring">
+			<message>电话必填</message>
+		</field-validator>
+		<field-validator type="regex">
+			<param name="expression"><![CDATA[(/\D/g,'')]]></param>
+			<message>您只能输入数字</message>
+		</field-validator>
+	</field>
+
+	<field name="postcode">
+		<field-validator type="regex">
+			<param name="expression"><![CDATA[(/\D/g,'')]]></param>
+			<message>您只能输入数字</message>
+		</field-validator>
+	</field>
+			
+			<field name="address">
+			<field-validator type="requiredstring">
+			<message>地址必填</message>
+		</field-validator>
+	</field>
+
+
+		<field name="email">
+			<field-validator type="email">
+			<message>email格式不对</message>
+		</field-validator>
+		<field-validator type="requiredstring">
+			<message>email必填</message>
+		</field-validator>
+	</field>
+
+	
+</validators>
